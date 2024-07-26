@@ -38,7 +38,6 @@ async fn main() -> Result<()> {
     info!("  op-block: {}", Digest::from(OP_BLOCK_ID));
     info!("  op-derive: {}", Digest::from(OP_DERIVE_ID));
     info!("  op-compose: {}", Digest::from(OP_COMPOSE_ID));
-    info!("  local-block: {}", Digest::from(LOCAL_BLOCK_ID));
 
     // execute the command
     let build_args = cli.build_args();
@@ -82,7 +81,7 @@ async fn main() -> Result<()> {
         Network::LocalTestnet => {
             let rpc_url = build_args.op_rpc_url.clone();
             (
-                LOCAL_BLOCK_ID,
+                ETH_BLOCK_ID,
                 build::build_block::<EthereumStrategy>(
                     &cli,
                     rpc_url,
