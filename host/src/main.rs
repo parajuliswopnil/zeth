@@ -79,7 +79,7 @@ async fn main() -> Result<()> {
             }
         }
         Network::LocalTestnet => {
-            let rpc_url = build_args.op_rpc_url.clone();
+            let rpc_url = build_args.local_rpc_url.clone();
             (
                 ETH_BLOCK_ID,
                 build::build_block::<EthereumStrategy>(

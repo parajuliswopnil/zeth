@@ -128,7 +128,8 @@ pub struct BuildArgs {
     #[clap(short, long, require_equals = true)]
     /// URL of the Ethereum RPC node
     pub eth_rpc_url: Option<String>,
-
+    #[clap(short, long, require_equals = true)]
+    pub local_rpc_url :Option<String>,
     #[clap(short, long, require_equals = true)]
     /// URL of the Optimism RPC node
     pub op_rpc_url: Option<String>,
