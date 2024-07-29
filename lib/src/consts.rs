@@ -45,9 +45,21 @@ pub const GWEI_TO_WEI: U256 = uint!(1_000_000_000_U256);
 /// The Ethereum mainnet specification.
 pub static ETH_MAINNET_CHAIN_SPEC: Lazy<ChainSpec> = Lazy::new(|| ChainSpec {
     chain_id: 1,
-    max_spec_id: SpecId::SHANGHAI,
+    max_spec_id: SpecId::CANCUN, // sw: changed the max_spec_id for ethereum mainnet to CANCUN
     hard_forks: BTreeMap::from([
         (SpecId::MERGE, ForkCondition::Block(15537394)),
+        (SpecId::SHANGHAI, ForkCondition::Timestamp(1681338455)),
+        (SpecId::CANCUN, ForkCondition::Timestamp(1710338135)),
+    ]),
+    gas_constants: BTreeMap::from([(SpecId::LONDON, ETH_MAINNET_EIP1559_CONSTANTS)]),
+});
+
+/// sw: added a chain spec for the local network similar to that of ethereum mainnet. 
+pub static LOCAL_CHAIN_SPEC: Lazy<ChainSpec> = Lazy::new(|| ChainSpec {
+    chain_id: 3151908,
+    max_spec_id: SpecId::CANCUN,
+    hard_forks: BTreeMap::from([
+        (SpecId::MERGE, ForkCondition::Block(0)),
         (SpecId::SHANGHAI, ForkCondition::Timestamp(1681338455)),
         (SpecId::CANCUN, ForkCondition::Timestamp(1710338135)),
     ]),

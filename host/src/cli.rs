@@ -97,6 +97,10 @@ pub enum Network {
     Optimism,
     /// Optimism Mainnet as derived from the Ethereum Mainnet
     OptimismDerived,
+    /// sw: tried to incorporate an additional network, a local instance of reth to prove 
+    /// blocks of my local network.
+    LocalNetwork,
+     
 }
 
 impl fmt::Display for Network {
@@ -126,7 +130,11 @@ pub struct BuildArgs {
     #[clap(short, long, require_equals = true)]
     /// URL of the Ethereum RPC node
     pub eth_rpc_url: Option<String>,
-
+    
+    #[clap(short, long, require_equals = true)]
+    /// URL of the Ethereum RPC node
+    pub local_rpc_url: Option<String>,
+    
     #[clap(short, long, require_equals = true)]
     /// URL of the Optimism RPC node
     pub op_rpc_url: Option<String>,

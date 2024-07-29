@@ -25,7 +25,7 @@ use zeth::{
 use zeth_guests::*;
 use zeth_lib::{
     builder::{EthereumStrategy, OptimismStrategy},
-    consts::{ETH_MAINNET_CHAIN_SPEC, OP_MAINNET_CHAIN_SPEC},
+    consts::{ETH_MAINNET_CHAIN_SPEC, LOCAL_CHAIN_SPEC, OP_MAINNET_CHAIN_SPEC},
 };
 
 #[tokio::main]
@@ -50,6 +50,19 @@ async fn main() -> Result<()> {
                     &cli,
                     rpc_url,
                     &ETH_MAINNET_CHAIN_SPEC,
+                    ETH_BLOCK_ELF,
+                )
+                .await?,
+            )
+        }
+        Network::LocalNetwork => {
+            let rpc_url = build_args.local_rpc_url.clone();
+            (
+                ETH_BLOCK_ID,
+                build::build_block::<EthereumStrategy>(
+                    &cli,
+                    rpc_url,
+                    &LOCAL_CHAIN_SPEC,
                     ETH_BLOCK_ELF,
                 )
                 .await?,
